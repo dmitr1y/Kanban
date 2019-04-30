@@ -1,5 +1,5 @@
 const User = require('../models/user');
-
+const config=require('../configurations/config')
 
 
 exports.login=function(req, res) {
@@ -11,8 +11,17 @@ exports.login=function(req, res) {
         }
         else {
             if (user.validPassword(req.body.password)) {
+                const payload = {
+
+                    check:  true
+
+                };
+                var token = jwt.sign(payload, config.secret, {
+                    expiresIn: 3, // expires in 3 min
+                });
                 return res.status(201).send({
                     message : "User Logged In",
+                    token: token
                 })
             }
             else {

@@ -4,7 +4,10 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 bodyParser = require('body-parser');
 jwt    = require('jsonwebtoken');
-const  ProtectedRoutes = express.Router();
+const  ProtectedRoutes = require('./controllers/protectedController');
+
+
+
 
 
 var mongoose = require('mongoose');
@@ -19,12 +22,8 @@ var indexRouter = require('./routes/index');
 var authRouter = require('./routes/auth');
 var config = require('./configurations/config');
 
-
-
 var app = express();
 
-
-app.set('Secret', config.secret);
 
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -33,7 +32,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 
-app.use('/api', ProtectedRoutes);
+app.use('/', ProtectedRoutes.ProtectedRoutes);
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
