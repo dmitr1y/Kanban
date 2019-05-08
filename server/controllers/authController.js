@@ -1,8 +1,10 @@
 const User = require('../models/user');
-const config=require('../configurations/config')
+const config=require('../configurations/config');
+const jwt    = require('jsonwebtoken');
 
 
 exports.login=function(req, res) {
+    console.log("login");
     User.findOne({ email : req.body.email }, function(err, user) {
         if (user === null) {
             return res.status(400).send({
@@ -16,9 +18,10 @@ exports.login=function(req, res) {
                     check:  true
 
                 };
-                var token = jwt.sign(payload, config.secret, {
-                    expiresIn: 3, // expires in 3 min
+                let token = jwt.sign(payload, config.secret, {
+                    expiresIn: 100, // expires in 100 min
                 });
+                console.log(token);
                 return res.status(201).send({
                     message : "User Logged In",
                     token: token
@@ -34,7 +37,7 @@ exports.login=function(req, res) {
 };
 
 
-exports.signup=function (req, res, next) {
+exports.signup=function (req, res) {
 
     let newUser = new User();
 

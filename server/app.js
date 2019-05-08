@@ -6,49 +6,38 @@ bodyParser = require('body-parser');
 jwt    = require('jsonwebtoken');
 const  ProtectedRoutes = require('./controllers/protectedController');
 
-
-
-
-
 var mongoose = require('mongoose');
 var mongoDB = 'mongodb+srv://rrr:rrr@cluster0-njyai.mongodb.net/test?retryWrites=true';
 mongoose.connect(mongoDB);
 mongoose.Promise = global.Promise;
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
-
-
 var indexRouter = require('./routes/index');
-var authRouter = require('./routes/auth');
-var config = require('./configurations/config');
-
+var auth = require('./routes/auth');
 var app = express();
+var user=require('./routes/user');
 
-
-// parse application/x-www-form-urlencoded
-app.use(bodyParser.urlencoded({ extended: true }));
-
-// parse application/json
-app.use(bodyParser.json());
-
-
-app.use('/', ProtectedRoutes.ProtectedRoutes);
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'public')));// parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
+
+app.use('/', ProtectedRoutes.ProtectedRoutes);
 app.use('/', indexRouter);
-app.use('/auth', authRouter);
+app.use('/auth', auth);
+ app.use('/user', user);
 
-// catch 404 and forward to error handler
+
 app.use(function(req, res, next) {
   next(createError(404));
 });
 
-// error handler
-app.use(function(err, req, res, next) {
+
+app.use(function(err, req, res) {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
