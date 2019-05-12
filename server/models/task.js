@@ -1,8 +1,8 @@
 const mongoose = require('mongoose');
 
 
-export const taskSchema = mongoose.Schema({
-    check : {
+const taskSchema = mongoose.Schema({
+    check: {
         type: mongoose.Schema.Types.Boolean,
         default: false
     },
@@ -13,4 +13,11 @@ export const taskSchema = mongoose.Schema({
     }
 });
 
-const Task = module.exports = mongoose.model('Task', taskSchema);
+const taskModel = mongoose.model('Task', taskSchema);
+
+const Task = {
+    model: taskModel,
+    schema: taskSchema,
+};
+
+module.exports = Task;

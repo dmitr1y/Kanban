@@ -5,7 +5,7 @@ const jwt = require('jsonwebtoken');
 
 exports.login = function (req, res) {
     console.log("login");
-    User.findOne({email: req.body.email}, function (err, user) {
+    User.findOne({email: req.body.email}, (err, user) => {
         if (user === null) {
             res.status(400).json({
                 message: "User not found."
@@ -35,7 +35,7 @@ exports.login = function (req, res) {
 };
 
 
-exports.signup = function (req, res) {
+exports.signup = (req, res) => {
 
     let newUser = new User();
 

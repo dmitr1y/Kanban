@@ -1,20 +1,23 @@
 const mongoose = require('mongoose');
-const Card = require('./card');
+const Card = require('./card').schema;
 
 const columnSchema = mongoose.Schema({
     name: {
         type: String,
         required: true,
-        max: 256
+        max: 256,
     },
     position: {
         type: mongoose.Schema.Types.Number,
         required: true,
         max: 256,
     },
-    cards: [{
-        type: Card
-    }
-    ]
+    cards: [Card],
 });
-const Column = module.exports = mongoose.model('Column', columnSchema);
+const columnModel = mongoose.model('Column', columnSchema);
+
+const Column = {
+    model: columnModel,
+    schema: columnSchema,
+};
+module.exports = Column;

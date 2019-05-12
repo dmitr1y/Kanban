@@ -1,7 +1,7 @@
 const jwt    = require('jsonwebtoken');
 const config = require('../configurations/config');
 
-exports.ProtectedRoutes = function (req, res, next) {
+exports.ProtectedRoutes = (req, res, next) => {
     console.log(req.path);
     console.log('secret: ' + config.secret);
     if (req.path=== '/auth/login' || req.path === '/auth/signup') {

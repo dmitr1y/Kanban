@@ -1,19 +1,21 @@
 const mongoose = require('mongoose');
-const Column = require('./column');
+const Column = require('./column').schema;
 
-const dashboardSchema = mongoose.Schema ({
+const dashboardSchema = mongoose.Schema({
     name: {
         type: String,
         required: true,
         max: 256
     },
-    columns:[
-        {
-          type: Column
-        }
-    ]
+    columns: [Column],
+    required: false,
 });
 
+const dashboardModel = mongoose.model('Dashboard', dashboardSchema);
 
+const Dashboard = {
+    model: dashboardModel,
+    schema: dashboardSchema,
+};
 
-const Dashboard = module.exports = mongoose.model('Dashboard', dashboardSchema);
+module.exports = Dashboard;

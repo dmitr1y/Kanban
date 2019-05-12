@@ -1,23 +1,27 @@
 const mongoose = require('mongoose');
-// const taskSchema = require('./task');
-import taskSchema from './task';
+const Task = require('./task').schema;
 
 const cardSchema = mongoose.Schema({
     name: {
         type: String,
-        required:true,
+        required: true,
         max: 256,
     },
     description: {
         type: String,
-        max:1024
+        max: 1024,
     },
     isUrgently: {
         type: mongoose.Schema.Types.Boolean,
-        default: false
+        default: false,
     },
-    // children: [Task],
-    tasks: [taskSchema],
-    // child: Task,
+    tasks: [Task],
 });
-const Card = module.exports = mongoose.model('Card', cardSchema);
+
+const cardModel = mongoose.model('Card', cardSchema);
+
+const Card = {
+    model: cardModel,
+    schema: cardSchema,
+};
+module.exports = Card;
