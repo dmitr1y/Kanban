@@ -18,10 +18,22 @@ const cardSchema = mongoose.Schema({
         required: true,
     },
     tasks: [{
-        id: {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: 'task'
-        }
+        type: taskSchema
     }
     ]
 });
+
+const taskSchema = mongoose.Schema({
+    check : {
+        type: Boolean,
+        required: false,
+    },
+    name: {
+        type: String,
+        required: true,
+    },
+    description: {
+        type: String
+    }
+});
+const Dashboard = module.exports = mongoose.model('Dashboard', dashboardSchema);
