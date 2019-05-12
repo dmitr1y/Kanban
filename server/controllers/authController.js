@@ -1,35 +1,33 @@
 const User = require('../models/user');
-const config=require('../configurations/config');
-const jwt    = require('jsonwebtoken');
+const config = require('../configurations/config');
+const jwt = require('jsonwebtoken');
 
 
-exports.login=function(req, res) {
+exports.login = function (req, res) {
     console.log("login");
-    User.findOne({ email : req.body.email }, function(err, user) {
+    User.findOne({email: req.body.email}, function (err, user) {
         if (user === null) {
-            return res.status(400).send({
-                message : "User not found."
+            res.status(400).json({
+                message: "User not found."
             });
-        }
-        else {
+        } else {
             if (user.validPassword(req.body.password)) {
                 const payload = {
 
-                    check:  true
+                    check: true
 
                 };
                 let token = jwt.sign(payload, config.secret, {
-                    expiresIn: 100, // expires in 100 min
+                    expiresIn: 1000, // expires in 100 min
                 });
                 console.log(token);
                 return res.status(201).send({
-                    message : "User Logged In",
+                    message: "User Logged In",
                     token: token
                 })
-            }
-            else {
+            } else {
                 return res.status(400).send({
-                    message : "Wrong Password"
+                    message: "Wrong Password"
                 });
             }
         }
@@ -37,7 +35,7 @@ exports.login=function(req, res) {
 };
 
 
-exports.signup=function (req, res) {
+exports.signup = function (req, res) {
 
     let newUser = new User();
 
@@ -48,12 +46,11 @@ exports.signup=function (req, res) {
     newUser.save((err, User) => {
         if (err) {
             return res.status(400).send({
-                message : "Failed to add user."
+                message: "Failed to add user."
             });
-        }
-        else {
+        } else {
             return res.status(201).send({
-                message : "User added succesfully."
+                message: "User added succesfully."
             });
         }
     });
