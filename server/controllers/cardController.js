@@ -1,7 +1,7 @@
 const Card = require('../models/card').model;
 
 exports.get = (req, res) => {
-    Card.findOne({_id: req.body.id}, (err, card) => {
+    Card.findById(req.body.id, (err, card) => {
         if (err || card == null) {
             return res.status(400).json({
                 message: "Card not found."

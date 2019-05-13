@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const Column = require('./column').schema;
+const Column = require('./column');
 
 const dashboardSchema = mongoose.Schema({
     name: {
@@ -7,15 +7,8 @@ const dashboardSchema = mongoose.Schema({
         required: true,
         max: 256
     },
-    columns: [Column],
+    columns: [{ type:  mongoose.Schema.Types.ObjectId, ref: 'Column' }],
     required: false,
 });
 
-const dashboardModel = mongoose.model('Dashboard', dashboardSchema);
-
-const Dashboard = {
-    model: dashboardModel,
-    schema: dashboardSchema,
-};
-
-module.exports = Dashboard;
+module.exports = mongoose.model('Dashboard', dashboardSchema);

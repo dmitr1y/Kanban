@@ -9,5 +9,6 @@ router.put('/create',dashboardController.create);
 router.delete('/delete',dashboardController.delete);
 router.get('/get',dashboardController.get);
 router.get('/list',dashboardController.getList);
+router.get('/columns',dashboardController.getColumns);
 
 module.exports = router;

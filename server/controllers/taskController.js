@@ -1,7 +1,7 @@
 const Task = require('../models/task').model;
 
 exports.get = (req, res) => {
-    Task.findOne({_id: req.body.id}, (err, task) => {
+    Task.findById(req.body.id, (err, task) => {
         if (err || task == null) {
             return res.status(400).json({
                 message: "Task not found."

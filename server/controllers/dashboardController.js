@@ -1,7 +1,7 @@
 const Dashboard = require('../models/dashboard').model;
 
 exports.get = (req, res) => {
-    Dashboard.findOne({_id: req.body.id}, (err, dashboard) => {
+    Dashboard.findById(req.body.id, (err, dashboard) => {
         if (err || dashboard == null) {
             return res.status(400).json({
                 message: "Dashboard not found."
@@ -33,15 +33,15 @@ exports.create = (req, res) => {
 
 exports.delete = (req, res) => {
     Dashboard.findOneAndRemove({_id: req.body.id})
-        .then((docs)=>{
-            if(docs) {
+        .then((docs) => {
+            if (docs) {
                 res.json({
                     message: "Dashboard deleted"
                 })
             } else {
                 res.status(404).json({message: "Dashboard didn't exist"})
             }
-        }).catch((err)=>{
+        }).catch((err) => {
         res.status(400).json({
             message: "Error"
         })
@@ -60,4 +60,17 @@ exports.getList = (req, res) => {
         });
         res.json({dashboardMap})
     });
-}
+};
+exports.getColumns = (req, res) => {
+    Dashboard.findById(req.body.id, (err, dashboard) => {
+        if (err || dashboard == null) {
+            return res.status(400).json({
+                message: "Dashboard not found."
+            });
+        } else {
+            return res.json({
+                columns,
+            });
+        }
+    });
+};

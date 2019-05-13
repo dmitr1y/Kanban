@@ -18,7 +18,8 @@ var indexRouter = require('./routes/index');
 var auth = require('./routes/auth');
 var app = express();
 var user = require('./routes/user');
-const dashboard=require('./routes/dashboard');
+const dashboard = require('./routes/dashboard');
+const column = require('./routes/column');
 
 
 app.use(express.json());
@@ -34,6 +35,7 @@ app.use('/', indexRouter);
 app.use('/auth', auth);
 app.use('/user', user);
 app.use('/dashboard', dashboard);
+app.use('/column', column);
 
 
 app.use(function (req, res, next) {
