@@ -32,21 +32,20 @@ exports.create = (req, res) => {
 };
 
 exports.delete = (req, res) => {
-    Dashboard.findOneAndRemove({_id: req.body.id}, (err, count) => {
-        if (err) {
-            res.status(401).json({
-                message: "Failed to delete dashboard.",
-            });
-        }
-        if (!count) {
-            res.status(404).json({
-                message: "Dashboard not found",
-            })
-        }
-        res.json({
-            message: "Dashboard deleted",
+    Dashboard.findOneAndRemove({_id: req.body.id})
+        .then((docs)=>{
+            if(docs) {
+                res.json({
+                    message: "Dashboard deleted"
+                })
+            } else {
+                res.status(404).json({message: "Dashboard didn't exist"})
+            }
+        }).catch((err)=>{
+        res.status(400).json({
+            message: "Error"
         })
-    });
+    })
 };
 exports.getList = (req, res) => {
     Dashboard.find({}, (err, dashboards) => {

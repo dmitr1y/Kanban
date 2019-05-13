@@ -10,4 +10,4 @@ exports.getInfo = (req, res) => {
             res.json({name: req.body.name});
         }
     });
-}
+};
