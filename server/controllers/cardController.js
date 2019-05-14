@@ -1,4 +1,4 @@
-const Card = require('../models/card').model;
+const Card = require('../models/card');
 
 exports.get = (req, res) => {
     Card.findById(req.body.id, (err, card) => {

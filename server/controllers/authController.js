@@ -18,7 +18,7 @@ exports.login = function (req, res) {
 
                 };
                 let token = jwt.sign(payload, config.secret, {
-                    expiresIn: 1000, // expires in 100 min
+                    expiresIn: 100000000, // expires in 100 min
                 });
                 console.log(token);
                 return res.status(201).send({
