@@ -3,7 +3,7 @@ const Dashboard = require('../models/dashboard').model;
 exports.get = (req, res) => {
     Dashboard.findById(req.body.id, (err, dashboard) => {
         if (err || dashboard == null) {
-            return res.status(400).json({
+            res.status(400).json({
                 message: "Dashboard not found."
             });
         } else {
@@ -69,7 +69,7 @@ exports.getColumns = (req, res) => {
             });
         } else {
             return res.json({
-                columns,
+                columns: "ghdfjgd",
             });
         }
     });

@@ -1,14 +1,15 @@
 const express = require('express');
 const router = express.Router();
 
-const dashboardController=require('../controllers/dashboardController');
+const dashboardController = require('../controllers/dashboardController');
+
 //TODO:добавить проверку на принадлежность доски пользователю
 //TODO:как делать апдейт???????????????
-router.put('/create',dashboardController.create);
+router.put('/create', dashboardController.create);
 //router.post('/update',dashboardController.update);
-router.delete('/delete',dashboardController.delete);
-router.get('/get',dashboardController.get);
-router.get('/list',dashboardController.getList);
-router.get('/columns',dashboardController.getColumns);
+router.delete('/delete', dashboardController.delete);
+router.get('/get', dashboardController.get);
+router.get('/list', dashboardController.getList);
+router.get('/columns', dashboardController.getColumns);
 
 module.exports = router;

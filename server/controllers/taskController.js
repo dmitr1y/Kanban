@@ -1,4 +1,4 @@
-const Task = require('../models/task').model;
+const Task = require('../models/task');
 
 exports.get = (req, res) => {
     Task.findById(req.body.id, (err, task) => {
