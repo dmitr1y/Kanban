@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-const Column = require('./column');
 
 const dashboardSchema = mongoose.Schema({
     name: {
@@ -7,8 +6,44 @@ const dashboardSchema = mongoose.Schema({
         required: true,
         max: 256
     },
-    columns: [{ type:  mongoose.Schema.Types.ObjectId, ref: 'Column' }],
-    required: false,
+    columns: [{
+        name: {
+            type: String,
+            required: true,
+            max: 256,
+        },
+        position: {
+            type: mongoose.Schema.Types.Number,
+            required: true,
+            max: 256,
+        },
+        cards: [{
+            name: {
+                type: String,
+                required: true,
+                max: 256,
+            },
+            description: {
+                type: String,
+                max: 1024,
+            },
+            isUrgently: {
+                type: mongoose.Schema.Types.Boolean,
+                default: false,
+            },
+            tasks: [{
+                check: {
+                    type: mongoose.Schema.Types.Boolean,
+                    default: false
+                },
+                name: {
+                    type: String,
+                    max: 256,
+                    required: true
+                }
+            }],
+        }],
+    }]
 });
 
 module.exports = mongoose.model('Dashboard', dashboardSchema);

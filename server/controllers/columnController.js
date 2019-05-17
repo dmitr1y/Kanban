@@ -1,7 +1,7 @@
-const Column = require('../models/column');
 const Dashboard = require('../models/dashboard');
+const Column = Dashboard.columns;
 
-exports.get = (req, res) => {
+    exports.get = (req, res) => {
     Column.findById(req.body.id, (err, column) => {
         if (err || column == null) {
             return res.status(400).json({
