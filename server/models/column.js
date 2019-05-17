@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const Card = require('./card');
+const Card = require('./card').schema;
 
 const columnSchema = mongoose.Schema({
     name: {
@@ -12,7 +12,12 @@ const columnSchema = mongoose.Schema({
         required: true,
         max: 256,
     },
-    cards: [{ type:  mongoose.Schema.Types.ObjectId, ref: 'Card' }],
+    cards: [Card],
 });
+const columnModel = mongoose.model('Column', columnSchema);
 
-module.exports = mongoose.model('Column', columnSchema);
+const Column = {
+    model: columnModel,
+    schema: columnSchema,
+};
+module.exports = Column;

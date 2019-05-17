@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const Task = require('./task');
+const Task = require('./task').schema;
 
 const cardSchema = mongoose.Schema({
     name: {
@@ -15,7 +15,13 @@ const cardSchema = mongoose.Schema({
         type: mongoose.Schema.Types.Boolean,
         default: false,
     },
-    tasks: [{ type:  mongoose.Schema.Types.ObjectId, ref: 'Task' }],
+    tasks: [Task],
 });
 
-module.exports = mongoose.model('Card', cardSchema);
+const cardModel = mongoose.model('Card', cardSchema);
+
+const Card = {
+    model: cardModel,
+    schema: cardSchema,
+};
+module.exports = Card;
