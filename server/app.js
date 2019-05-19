@@ -20,7 +20,7 @@ var app = express();
 var user = require('./routes/user');
 const dashboard = require('./routes/dashboard');
 const column = require('./routes/column');
-
+const card = require('./routes/card');
 
 app.use(express.json());
 app.use(express.urlencoded({extended: false}));
@@ -36,7 +36,7 @@ app.use('/auth', auth);
 app.use('/user', user);
 app.use('/dashboard', dashboard);
 app.use('/column', column);
-
+app.use('/card', card);
 
 app.use(function (req, res, next) {
     next(createError(404));

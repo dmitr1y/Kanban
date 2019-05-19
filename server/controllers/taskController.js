@@ -1,63 +1,172 @@
-const Task = require('../models/task');
+const Dashboard = require('../models/dashboard').model;
+
 
 exports.get = (req, res) => {
-    Task.findById(req.body.id, (err, task) => {
-        if (err || task == null) {
-            return res.status(400).json({
-                message: "Task not found."
+    Dashboard.findById(req.body.dashboardId, (err, dashboard) => {
+        if (err || dashboard == null) {
+            res.status(404).json({
+                message: "Dashboard not found."
             });
         } else {
-            res.json({
-                task
-            });
+            let column = dashboard.columns.id(req.body.columnId);
+            if (column) {
+                let card = dashboard.columns.id(req.body.columnId).cards.id(req.body.cardId);
+                if (card) {
+                    let task = card.tasks.id(req.body.taskId);
+                    if (task) {
+                        res.json({
+                            task: task,
+                        });
+                    } else {
+                        res.status(404).json({
+                            message: "Task not found."
+                        });
+                    }
+                } else {
+                    res.status(404).json({
+                        message: "Card not found."
+                    });
+                }
+            } else {
+                res.status(404).json({
+                    message: "Column not found."
+                });
+            }
         }
     });
 };
 
 exports.create = (req, res) => {
-    let newTask = new Task;
-    newTask.name = req.body.name;
-    newTask.save((err, task) => {
-        if (err) {
+    Dashboard.findById(req.body.id, (err, dashboard) => {
+        if (err || dashboard == null) {
             return res.status(401).json({
-                message: "Failed to create task.",
-            });
-        } else {
-            return res.json({
-                task
+                message: "Failed to get dashboard",
             });
         }
+        let column = dashboard.columns.id(req.body.columnId);
+        if (!column) {
+            return res.status(404).json({
+                message: "Column not found",
+            });
+        }
+        let card = column.cards.id(req.body.cardId);
+        if (!card) {
+            return res.status(404).json({
+                message: "Card not found",
+            });
+        }
+        let max = 0;
+        for (let i = 0; i < card.tasks.length; i++) {
+            if (max < card.tasks.position) {
+                max = card.tasks.position;
+            }
+        }
+        column.cards.push({
+            name: req.body.name,
+            position: max + 1,
+        });
+        dashboard.save(function (err) {
+            if (err) {
+                return res.status(401).json({
+                    message: "Failed to save dashboard",
+                });
+            }
+            res.json({
+                dashboard
+            });
+        });
     });
-
 };
 
 exports.delete = (req, res) => {
-    Task.findOneAndRemove({_id: req.body.id})
-        .then((docs)=>{
-            if(docs) {
-                res.json({
-                    message: "Task deleted"
-                })
-            } else {
-                res.status(404).json({message: "Task didn't exist"})
-            }
-        }).catch((err)=>{
-        res.status(400).json({
-            message: "Error"
-        })
-    })
-};
-exports.getList = (req, res) => {
-    Task.find({}, (err, tasks) => {
+    Dashboard.findById(req.body.dashboardId, (err, dashboard) => {
         if (err) {
-            return res.status(401).json({
-                message: "Failed to get tasks.",
+            res.status(404).json({
+                message: "Failed to get dashboard.",
             });
         }
-        let taskMap = {};
-        tasks.forEach(function (task) {
-            taskMap[task._id] = task;
+        let column = dashboard.columns.id(req.body.columnId);
+        if (!column) {
+            res.status(404).json({
+                message: "Failed to get column",
+            });
+            return;
+        }
+        let card = column.cards.id(req.body.cardId);
+        if (!card) {
+            return res.status(404).json({
+                message: "Card not found",
+            });
+        }
+        let pos = card.tasks.id(req.body.taskId).position;
+        card.pull(req.body.taskId);
+        for (let i = 0; i < card.tasks.length; i++) {
+            if (pos < card.tasks[i].position) {
+                card.tasks[i].position = card.tasks[i].position - 1;
+            }
+        }
+        dashboard.save(function (err) {
+            if (err) {
+                return res.status(401).json({
+                    message: "Failed to save dashboard",
+                });
+            }
+            res.json({
+                dashboard
+            });
         });
-        res.json({taskMap})
     });
-}
+};
+
+exports.update = (req, res) => {
+    Dashboard.findById(req.body.dashboardId, (err, dashboard) => {
+        if (err || dashboard == null) {
+            return res.status(404).json({
+                message: "Failed to get dashboard.",
+            });
+        }
+        let column = dashboard.columns.id(req.body.columnId);
+        if (!column) {
+            return res.status(404).json({
+                message: "Failed to get column.",
+            });
+        }
+        let card = column.cards.id(req.body.cardId);
+        if (!card) {
+            return res.status(404).json({
+                message: "Card not found",
+            });
+        }
+        card.tasks.id(res.body.taskId);
+        dashboard.save(function (err) {
+            if (err) {
+                return res.status(401).json({
+                    message: "Failed to save dashboard",
+                });
+            }
+            res.json({
+                dashboard
+            });
+        });
+    });
+};
+exports.getCards = (req, res) => {
+    Dashboard.findById(req.body.id, (err, dashboard) => {
+        if (err || dashboard == null) {
+            return res.status(404).json({
+                message: "Dashboard not found."
+            });
+        } else {
+            let column = dashboard.columns.id(res.body.columnId);
+            if (column.cards.id(req.body.cardId)) {
+                return res.json({
+                    cards: column.cards,
+                });
+            } else {
+                return res.status(404).json({
+                    message: "Card not found."
+                });
+            }
+        }
+    });
+};

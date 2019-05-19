@@ -1,16 +1,23 @@
+const Column = require("../models/column");
 const Dashboard = require('../models/dashboard').model;
-const Column = require('../models/column').model;
+
 
 exports.get = (req, res) => {
-    Column.findById(req.body.id, (err, column) => {
-        if (err || column == null) {
-            return res.status(400).json({
-                message: "Column not found."
+    Dashboard.findById(req.body.dashboardId, (err, dashboard) => {
+        if (err || dashboard == null) {
+            res.status(404).json({
+                message: "Dashboard not found."
             });
         } else {
-            res.json({
-                column
-            });
+            if (dashboard.columns.id(req.body.columnId)) {
+                res.json({
+                    column: dashboard.columns.id(req.body.columnId)
+                });
+            } else {
+                res.status(404).json({
+                    message: "Column not found."
+                });
+            }
         }
     });
 };
@@ -46,7 +53,6 @@ exports.delete = (req, res) => {
 
     Dashboard.findById(req.body.dashboardId, (err, dashboard) => {
         if (err) {
-            console.log("дима не прав");
             res.status(404).json({
                 message: "Failed to get dashboard.",
             });
@@ -74,5 +80,65 @@ exports.delete = (req, res) => {
                 dashboard
             });
         });
+    });
+};
+
+exports.update = (req, res) => {
+    if(!req.body.name||!req.body.columnId||!req.body.position||!req.body.dashboardId){
+        return res.status(404).json({
+            message: "Not found",
+        });
+    }
+    Dashboard.findById(req.body.dashboardId, (err, dashboard) => {
+        if (err || dashboard == null) {
+            return res.status(404).json({
+                message: "Failed to get dashboard",
+            });
+        }
+        let column =dashboard.columns.id(req.body.columnId);
+        if (!column) {
+            return res.status(404).json({
+                message: "Failed to get column.",
+            });
+        }
+        if(req.body.position>dashboard.columns.length)
+        {
+            return res.status(404).json({
+                message: "Wrong data",
+            });
+        }
+        column.name=req.body.name;
+        column.position=req.body.position;
+
+        dashboard.save(function (err) {
+            if (err) {
+                return res.status(401).json({
+                    message: "Failed to save dashboard",
+                });
+            }
+            res.json({
+                dashboard
+            });
+        });
+    });
+};
+exports.getCards = (req, res) => {
+    Dashboard.findById(req.body.id, (err, dashboard) => {
+        if (err || dashboard == null) {
+            return res.status(404).json({
+                message: "Dashboard not found."
+            });
+        } else {
+            let column = dashboard.columns.id(res.body.columnId);
+            if (column) {
+                return res.json({
+                    columns: column.cards,
+                });
+            } else {
+                return res.status(404).json({
+                    message: "Column not found."
+                });
+            }
+        }
     });
 };

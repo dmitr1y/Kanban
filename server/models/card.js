@@ -11,6 +11,11 @@ const cardSchema = mongoose.Schema({
         type: String,
         max: 1024,
     },
+    position :{
+        type: mongoose.Schema.Types.Number,
+        required: true,
+        max: 256,
+    },
     isUrgently: {
         type: mongoose.Schema.Types.Boolean,
         default: false,

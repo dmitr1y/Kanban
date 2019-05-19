@@ -10,7 +10,13 @@ const taskSchema = mongoose.Schema({
         type: String,
         max: 256,
         required: true
-    }
+    },
+    position: {
+        type: mongoose.Schema.Types.Number,
+        required: true,
+        max: 256,
+    },
+
 });
 
 const taskModel = mongoose.model('Task', taskSchema);

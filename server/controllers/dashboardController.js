@@ -69,8 +69,33 @@ exports.getColumns = (req, res) => {
             });
         } else {
             return res.json({
-                columns: "ghdfjgd",
+                columns: dashboard.columns,
             });
         }
+    });
+};
+exports.update = (req, res) => {
+    if(!req.body.name||!req.body.id){
+        return res.status(404).json({
+            message: "Not found",
+        });
+    }
+    Dashboard.findById(req.body.id, (err, dashboard) => {
+        if (err || dashboard==null) {
+            return res.status(404).json({
+                message: "Failed to get dashboard.",
+            });
+        }
+        dashboard.name=req.body.name;
+        dashboard.save(function (err) {
+            if (err) {
+                return res.status(401).json({
+                    message: "Failed to save dashboard",
+                });
+            }
+            res.json({
+                dashboard
+            });
+        });
     });
 };
