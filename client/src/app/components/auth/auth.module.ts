@@ -34,6 +34,7 @@ import { ToastComponent } from 'src/app/shared/toast/toast.component';
   providers: [
     AuthService,
     UserService,
+    UserService,
   ],
   exports: [
     AuthComponent,

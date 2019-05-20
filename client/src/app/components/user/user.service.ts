@@ -23,14 +23,10 @@ export class UserService {
 
   public currentUser: Observable<IUser>;
 
-  public getProfile(username?: string): Promise<IUser> {
-    if (!username) {
-      username = 'root';
-    }
-
-    return this.httpClient.get<{ user: IUser }>('/api/user/profile', {
+  public getProfile(email?: string): Promise<IUser> {
+    return this.httpClient.get<{ user: IUser }>('/api/user/info', {
       params: {
-        username,
+        email,
       },
     }).pipe(map((result => result.user))).toPromise();
   }

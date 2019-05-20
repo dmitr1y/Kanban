@@ -4,6 +4,7 @@ import { AuthService } from 'src/app/components/auth/auth.service';
 import { Router } from '@angular/router';
 import { MatBottomSheet } from '@angular/material';
 import { ToastComponent } from 'src/app/shared/toast/toast.component';
+import { UserService } from 'src/app/components/user/user.service';
 
 @Component({
   selector: 'app-auth',
@@ -20,6 +21,7 @@ export class AuthComponent implements OnInit {
     private authService: AuthService,
     private router: Router,
     private bottomSheet: MatBottomSheet,
+    private userService: UserService,
   ) {
     this.user = {
       email: '',
@@ -50,6 +52,9 @@ export class AuthComponent implements OnInit {
   private signin(): void {
     if (this.user && this.user.email && this.user.password) {
       this.authService.login(this.user).then(result => {
+          this.userService.getProfile(this.user.email).then((user) => {
+            this.userService.saveCurrentUser(user);
+          });
           this.router.navigate(['dashboard']);
         },
         (err) => {

@@ -33,10 +33,9 @@ export class AuthService {
         }
 
         localStorage.setItem(AuthService.JWT_TOKEN_KEY, token.jwt);
-        this.userService.saveCurrentUser(user);
 
         return true;
-      })
+      }),
     );
   }
 

@@ -1,42 +1,26 @@
-const jwt    = require('jsonwebtoken');
+const jwt = require('jsonwebtoken');
 const config = require('../configurations/config');
 
 exports.ProtectedRoutes = (req, res, next) => {
-    console.log(req.path);
-    console.log('secret: ' + config.secret);
-    if (req.path=== '/auth/login' || req.path === '/auth/signup') {
-        console.log("not protected");
-        next();
-    } else {
-        // check header for the token
-        var token = req.headers['access-token'];
-        console.log('TOKEN: ' + token);
+  if (req.path === '/auth/login' || req.path === '/auth/signup') {
+    next();
+  } else {
+    const token = req.headers['authorization'];
 
-        // decode token
-        if (token) {
-
-            // verifies secret and checks if the token is expired
-            jwt.verify(token, config.secret, (err, decoded) => {
-                console.log(err)
-                if (err) {
-                    return res.json({message: 'invalid token'});
-                } else {
-                    // if everything is good, save to request for use in other routes
-                    req.decoded = decoded;
-                    next();
-                }
-            });
-
+    if (token) {
+      jwt.verify(token, config.secret, (err, decoded) => {
+        if (err) {
+          res.status(403).json({message: 'invalid token'});
         } else {
-
-            // if there is no token
-
-            res.send({
-
-                message: 'No token provided.'
-            });
-
+          req.decoded = decoded;
+          next();
         }
+      });
+    } else {
+      res.status(403).json({
+        message: 'No token provided.',
+      });
     }
+  }
 };
 

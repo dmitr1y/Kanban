@@ -1,13 +1,18 @@
 const User = require('../models/user');
 
 exports.getInfo = (req, res) => {
-    User.findOne({email: req.body.email}, (err) => {
-        if (err || User === null) {
-            return res.status(400).send({
+    User.findOne({email: req.query.email}, (err, user) => {
+        if (err || !user) {
+            res.status(404).json({
                 message: "User not found."
             });
         } else {
-            res.json({name: req.body.name});
+            res.json({
+                user : {
+                    name: user.name,
+                    email: user.email,
+                },
+            });
         }
     });
 };
