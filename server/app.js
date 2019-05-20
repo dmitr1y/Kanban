@@ -1,23 +1,23 @@
-var createError = require('http-errors');
+const createError = require('http-errors');
 const express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
+const path = require('path');
+const cookieParser = require('cookie-parser');
 bodyParser = require('body-parser');
 jwt = require('jsonwebtoken');
 const ProtectedRoutes = require('./controllers/protectedController');
 
-var mongoose = require('mongoose');
-var mongoDB = 'mongodb+srv://rrr:rrr@cluster0-njyai.mongodb.net/test?retryWrites=true';
+const mongoose = require('mongoose');
+const mongoDB = 'mongodb+srv://rrr:rrr@cluster0-njyai.mongodb.net/test?retryWrites=true';
 mongoose.connect(mongoDB)
     .then(() => console.log('Now connected to MongoDB!'))
     .catch(err => console.error('Something went wrong', err));
 mongoose.Promise = global.Promise;
-var db = mongoose.connection;
+const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
-var indexRouter = require('./routes/index');
-var auth = require('./routes/auth');
-var app = express();
-var user = require('./routes/user');
+const indexRouter = require('./routes/index');
+const auth = require('./routes/auth');
+const app = express();
+const user = require('./routes/user');
 const dashboard = require('./routes/dashboard');
 const column = require('./routes/column');
 const card = require('./routes/card');
