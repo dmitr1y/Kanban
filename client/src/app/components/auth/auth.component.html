@@ -1,0 +1,29 @@
+<mat-card>
+    <mat-card-title>
+        {{isRegistration ? 'Регистрация' : 'Вход'}}
+    </mat-card-title>
+    <mat-card-content>
+        <form (ngSubmit)="submit()">
+            <mat-form-field *ngIf="isRegistration">
+                <input matInput placeholder="Имя пользователя" [(ngModel)]="user.name" name="username">
+            </mat-form-field>
+
+            <mat-form-field>
+                <input matInput placeholder="Email" [(ngModel)]="user.email" name="email">
+            </mat-form-field>
+
+            <mat-form-field>
+                <input matInput placeholder="Пароль" type="password" [(ngModel)]="user.password" name="password">
+            </mat-form-field>
+
+            <button mat-raised-button color="primary" type="submit">
+                {{isRegistration ? 'Регистрация' : 'Вход'}}
+            </button>
+
+            <span class="auth-switch">
+                <a *ngIf="!isRegistration" href="javascript:void(0)" (click)="registation()">Нет аккаунта?</a>
+                <a *ngIf="isRegistration" href="javascript:void(0)" (click)="login()">Войти</a>
+            </span>
+        </form>
+    </mat-card-content>
+</mat-card>

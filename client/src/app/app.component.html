@@ -1,0 +1,18 @@
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<app-loader></app-loader>
+
+<mat-toolbar>
+    <span class="logo">Kanban</span>
+
+    <app-user-menu class="right-menu" *ngIf="isAuthorized()"></app-user-menu>
+</mat-toolbar>
+
+<mat-sidenav-container class="nav-container" autosize>
+    <mat-sidenav #sidenav class="example-sidenav" mode="side" opened="true" *ngIf="isAuthorized()">
+        <app-left-nav></app-left-nav>
+    </mat-sidenav>
+
+    <div class="content">
+        <router-outlet></router-outlet>
+    </div>
+</mat-sidenav-container>

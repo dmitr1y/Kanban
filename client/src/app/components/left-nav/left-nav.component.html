@@ -1,0 +1,11 @@
+<mat-list>
+    <mat-list-item>
+        <button mat-icon-button (click)="isExpanded = !isExpanded">
+            <mat-icon> {{isExpanded ? 'chevron_left' : 'chevron_right'}}</mat-icon>
+        </button>
+    </mat-list-item>
+    <mat-list-item routerLink="dashboard" routerLinkActive="active">
+        <mat-icon mat-list-icon>home</mat-icon>
+        <p *ngIf="isExpanded">Главная</p>
+    </mat-list-item>
+</mat-list>

@@ -1,0 +1,7 @@
+<div>
+    <button mat-button [matMenuTriggerFor]="menu">{{user ? user.name : ''}}</button>
+    <mat-menu #menu="matMenu">
+        <button mat-menu-item>Настройки</button>
+        <button mat-menu-item (click)="logout()">Выход</button>
+    </mat-menu>
+</div>
