@@ -54,11 +54,8 @@ exports.getList = (req, res) => {
                 message: "Failed to get dashboards.",
             });
         }
-        let dashboardMap = {};
-        dashboards.forEach(function (dashboard) {
-            dashboardMap[dashboard._id] = dashboard;
-        });
-        res.json({dashboardMap})
+
+      res.json({dashboards});
     });
 };
 exports.getColumns = (req, res) => {

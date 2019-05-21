@@ -4,6 +4,7 @@ import { NotEnoughRightsComponent } from 'src/app/components/not-enough-rights/n
 import { Routes } from '@angular/router';
 import { AuthGuardService } from 'src/app/services/auth-guard/auth-guard.service';
 import { PreventLoggedInAccessService } from 'src/app/services/prevent-logged-in-access/prevent-logged-in-access.service';
+import { BoardsComponent } from 'src/app/components/boards/boards.component';
 
 export const AppRoutes: Routes = [
   {
@@ -17,7 +18,7 @@ export const AppRoutes: Routes = [
       },
       {
         path: 'dashboard',
-        component: DashboardComponent,
+        component: BoardsComponent,
       },
     ],
   },

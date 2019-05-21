@@ -25,6 +25,7 @@ import { AuthGuardService } from 'src/app/services/auth-guard/auth-guard.service
 import { PreventLoggedInAccessService } from 'src/app/services/prevent-logged-in-access/prevent-logged-in-access.service';
 import { ToastComponent } from './shared/toast/toast.component';
 import { WINDOW_PROVIDES } from 'src/app/services/window/window.provider';
+import { BoardsModule } from 'src/app/components/boards/boards.module';
 
 @NgModule({
   declarations: [
@@ -52,6 +53,7 @@ import { WINDOW_PROVIDES } from 'src/app/services/window/window.provider';
     AuthModule,
     LoaderModule,
     UserMenuModule,
+    BoardsModule,
   ],
   providers: [
     AuthService,
