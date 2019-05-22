@@ -2,14 +2,14 @@ import { NgModule } from '@angular/core';
 import { BoardsComponent } from 'src/app/components/boards/boards.component';
 import { BoardsService } from 'src/app/components/boards/boards.service';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { ColumnComponent } from './column/column.component';
-import { CardComponent } from './card/card.component';
-import { TaskComponent } from './card/task/task.component';
+import { ColumnComponent } from './board-detail/column/column.component';
+import { CardComponent } from './board-detail/card/card.component';
+import { TaskComponent } from './board-detail/card/task/task.component';
 import { BoardComponent } from './board/board.component';
-import { MatButtonModule, MatCardModule } from '@angular/material';
+import { MatButtonModule, MatCardModule, MatCheckboxModule } from '@angular/material';
 import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
-import { BoardDetailComponent } from './board-detail/board-detail.component';
+import { BoardDetailComponent } from 'src/app/components/boards/board-detail/board-detail.component';
 
 @NgModule({
   imports: [
@@ -18,6 +18,7 @@ import { BoardDetailComponent } from './board-detail/board-detail.component';
     MatButtonModule,
     CommonModule,
     BrowserModule,
+    MatCheckboxModule,
   ],
   declarations: [
     BoardsComponent,
@@ -28,11 +29,10 @@ import { BoardDetailComponent } from './board-detail/board-detail.component';
     BoardDetailComponent,
   ],
   entryComponents: [
-    BoardsComponent,
-    ColumnComponent,
-    CardComponent,
-    TaskComponent,
-    BoardComponent,
+    // ColumnComponent,
+    // CardComponent,
+    // TaskComponent,
+    // BoardComponent,
   ],
   providers: [
     HttpClient,

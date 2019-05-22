@@ -19,6 +19,11 @@ export class BoardComponent implements OnInit {
   }
 
   openBoard(dashboard: IDashboard): void {
-    this.router.navigate(['/dashboard/view']);
+    console.log('navigate to board', dashboard._id);
+    this.router.navigate(['/dashboard/view'], {
+      queryParams: {
+        id: dashboard._id,
+      },
+    });
   }
 }

@@ -1,4 +1,4 @@
-import { ITask } from 'src/app/components/boards/card/task/interfaces';
+import { ITask } from 'src/app/components/boards/board-detail/card/task/interfaces';
 
 export interface ICard {
   name: string;

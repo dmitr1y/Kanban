@@ -1,7 +1,7 @@
 const Dashboard = require('../models/dashboard').model;
 
 exports.get = (req, res) => {
-    Dashboard.findById(req.body.id, (err, dashboard) => {
+    Dashboard.findById(req.query.id, (err, dashboard) => {
         if (err || dashboard == null) {
             res.status(400).json({
                 message: "Dashboard not found."
