@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { MatCheckboxChange } from '@angular/material';
-import { ITask } from 'src/app/components/boards/board-detail/card/task/interfaces';
+import { ITask } from 'src/app/components/boards/card-detail/task/interfaces';
 
 @Component({
   selector: 'app-task',

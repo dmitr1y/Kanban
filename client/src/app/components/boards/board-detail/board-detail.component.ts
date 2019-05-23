@@ -11,7 +11,7 @@ import { IColumn } from 'src/app/components/boards/board-detail/column/interface
 })
 export class BoardDetailComponent implements OnInit {
   public board: IDashboard;
-  private boardId: string;
+  public boardId: string;
 
   constructor(
     private router: ActivatedRoute,

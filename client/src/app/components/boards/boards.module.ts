@@ -4,12 +4,13 @@ import { BoardsService } from 'src/app/components/boards/boards.service';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { ColumnComponent } from './board-detail/column/column.component';
 import { CardComponent } from './board-detail/card/card.component';
-import { TaskComponent } from './board-detail/card/task/task.component';
 import { BoardComponent } from './board/board.component';
 import { MatButtonModule, MatCardModule, MatCheckboxModule } from '@angular/material';
 import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 import { BoardDetailComponent } from 'src/app/components/boards/board-detail/board-detail.component';
+import { CardDetailComponent } from './card-detail/card-detail.component';
+import { TaskComponent } from 'src/app/components/boards/card-detail/task/task.component';
 
 @NgModule({
   imports: [
@@ -27,6 +28,7 @@ import { BoardDetailComponent } from 'src/app/components/boards/board-detail/boa
     TaskComponent,
     BoardComponent,
     BoardDetailComponent,
+    CardDetailComponent,
   ],
   entryComponents: [
     // ColumnComponent,

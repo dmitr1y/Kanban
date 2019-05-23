@@ -6,5 +6,12 @@
         <p>
             {{card.description}}
         </p>
+        <div class="tasks-list">
+            <app-task
+                    *ngFor="let task of card.tasks"
+                    [task]="task"
+            >
+            </app-task>
+        </div>
     </mat-card-content>
 </mat-card>

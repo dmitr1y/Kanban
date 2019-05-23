@@ -6,6 +6,8 @@
         <app-card
                 *ngFor="let card of column.cards"
                 [card]="card"
+                [dashboardId]="dashboardId"
+                [columnId]="column._id"
         >
         </app-card>
     </mat-card-content>

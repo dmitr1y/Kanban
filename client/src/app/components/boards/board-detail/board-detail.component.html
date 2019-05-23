@@ -1,6 +1,11 @@
 <h1>{{board && board.name ? board.name : 'Новая доска..'}}</h1>
 
 <div class="column-row" *ngIf="board && board.columns">
-    <app-column *ngFor="let column of getSortedColumns()" [column]="column"></app-column>
+    <app-column
+            *ngFor="let column of getSortedColumns()"
+            [column]="column"
+            [dashboardId]="boardId"
+    >
+    </app-column>
     <button mat-button (click)="createColumn()">Добавить колонку</button>
 </div>

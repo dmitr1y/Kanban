@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ICard } from 'src/app/components/boards/board-detail/card/interfaces';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-card',
@@ -8,11 +9,24 @@ import { ICard } from 'src/app/components/boards/board-detail/card/interfaces';
 })
 export class CardComponent implements OnInit {
   @Input() card: ICard;
+  @Input() dashboardId: string;
+  @Input() columnId: string;
 
-  constructor() {
+  constructor(
+    private router: Router,
+  ) {
   }
 
   ngOnInit() {
   }
 
+  openCard() {
+    this.router.navigate(['/dashboard/card/view'], {
+      queryParams: {
+        id: this.card._id,
+        dashboardId: this.dashboardId,
+        columnId: this.columnId,
+      },
+    });
+  }
 }

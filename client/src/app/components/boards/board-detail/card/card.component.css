@@ -1,0 +1,7 @@
+.column-card :hover {
+    cursor: pointer;
+}
+
+.column-card {
+    margin-bottom: 0.5em;
+}

@@ -8,6 +8,7 @@ import { IColumn } from 'src/app/components/boards/board-detail/column/interface
 })
 export class ColumnComponent implements OnInit {
   @Input() column: IColumn;
+  @Input() dashboardId: string;
 
   constructor() {
   }
