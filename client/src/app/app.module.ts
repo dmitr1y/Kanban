@@ -7,8 +7,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
 import { MaterialModule } from 'src/app/components/material/material.module';
 import { MatFormFieldModule, MatSelectModule, MatSidenavModule } from '@angular/material';
-import { LeftNavComponent } from './components/left-nav/left-nav.component';
-import { LeftNavModule } from 'src/app/components/left-nav/left-nav.module';
 import { RouterModule } from '@angular/router';
 import { AuthModule } from 'src/app/components/auth/auth.module';
 import { LoaderModule } from 'src/app/components/loader/loader.module';
@@ -26,6 +24,7 @@ import { PreventLoggedInAccessService } from 'src/app/services/prevent-logged-in
 import { ToastComponent } from './shared/toast/toast.component';
 import { WINDOW_PROVIDES } from 'src/app/services/window/window.provider';
 import { BoardsModule } from 'src/app/components/boards/boards.module';
+import { MainMenuModule } from 'src/app/components/main-menu/main-menu.module';
 
 @NgModule({
   declarations: [
@@ -35,7 +34,6 @@ import { BoardsModule } from 'src/app/components/boards/boards.module';
     ToastComponent,
   ],
   entryComponents: [
-    LeftNavComponent,
   ],
   imports: [
     BrowserModule,
@@ -46,7 +44,6 @@ import { BoardsModule } from 'src/app/components/boards/boards.module';
     MatSidenavModule,
     MatFormFieldModule,
     MatSelectModule,
-    LeftNavModule,
     RouterModule.forRoot(
       AppRoutes,
     ),
@@ -54,6 +51,7 @@ import { BoardsModule } from 'src/app/components/boards/boards.module';
     LoaderModule,
     UserMenuModule,
     BoardsModule,
+    MainMenuModule,
   ],
   providers: [
     AuthService,

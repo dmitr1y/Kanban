@@ -21,7 +21,7 @@ mat-toolbar-row {
 }
 
 .content {
-    padding: 5px;
+    padding: 2em;
 }
 
 .right-menu {
@@ -35,4 +35,8 @@ app-loader {
 
 .logo {
 
+}
+
+app-main-menu {
+    margin-left: 2em;
 }

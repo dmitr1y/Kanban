@@ -1,0 +1,5 @@
+.main-menu {
+    display: inline-flex;
+    justify-content: left;
+    width: 100%;
+}
