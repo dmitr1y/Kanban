@@ -19,3 +19,9 @@
 app-column {
     margin: 1em;
 }
+
+.btn-add-column {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}

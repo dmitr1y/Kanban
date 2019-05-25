@@ -25,6 +25,7 @@ import { ToastComponent } from './shared/toast/toast.component';
 import { WINDOW_PROVIDES } from 'src/app/services/window/window.provider';
 import { BoardsModule } from 'src/app/components/boards/boards.module';
 import { MainMenuModule } from 'src/app/components/main-menu/main-menu.module';
+import { BackButtonModule } from 'src/app/shared/back-button/back-button.module';
 
 @NgModule({
   declarations: [
@@ -52,6 +53,7 @@ import { MainMenuModule } from 'src/app/components/main-menu/main-menu.module';
     UserMenuModule,
     BoardsModule,
     MainMenuModule,
+    BackButtonModule,
   ],
   providers: [
     AuthService,

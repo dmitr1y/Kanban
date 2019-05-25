@@ -22,8 +22,14 @@ export class CardDetailComponent implements OnInit {
     this.cardId = this.router.snapshot.queryParamMap.get('id');
     let dashboardId = this.router.snapshot.queryParamMap.get('dashboardId');
     let columnId = this.router.snapshot.queryParamMap.get('columnId');
-    this.service.getCard(dashboardId, columnId, this.cardId).then(card => {
-      this.card = card;
-    });
+    this.service.getCard(dashboardId, columnId, this.cardId).then(
+      card => {
+        console.log('get card', card);
+        this.card = card;
+      },
+      err => {
+        console.log(err.message);
+      },
+    );
   }
 }

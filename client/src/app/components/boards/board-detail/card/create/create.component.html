@@ -1,0 +1,18 @@
+<div class="form-column">
+    <mat-form-field>
+        <input matInput placeholder="Название карточки" [(ngModel)]="data.card.name">
+    </mat-form-field>
+    <mat-form-field>
+        <textarea matInput placeholder="Описание" [(ngModel)]="data.card.description"></textarea>
+    </mat-form-field>
+
+</div>
+
+<div class="btn-row">
+    <button mat-icon-button (click)="onNoClick()" matTooltip="Отмена">
+        <mat-icon>cancel</mat-icon>
+    </button>
+    <button mat-icon-button matTooltip="Сохранить" [mat-dialog-close]="data.card">
+        <mat-icon color="primary">done</mat-icon>
+    </button>
+</div>

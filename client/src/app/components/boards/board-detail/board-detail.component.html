@@ -1,4 +1,7 @@
-<h1>{{board && board.name ? board.name : 'Новая доска..'}}</h1>
+<div class="header-with-button">
+    <app-back-button></app-back-button>
+    <h1>{{board && board.name ? board.name : 'Новая доска..'}}</h1>
+</div>
 
 <div class="column-row" *ngIf="board && board.columns">
     <app-column
@@ -7,5 +10,9 @@
             [dashboardId]="boardId"
     >
     </app-column>
-    <button mat-button (click)="createColumn()">Добавить колонку</button>
+    <div class="btn-add-column">
+        <button mat-icon-button (click)="createColumn()" matTooltip="Добавить колонку">
+            <mat-icon>add</mat-icon>
+        </button>
+    </div>
 </div>

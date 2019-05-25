@@ -2,3 +2,14 @@
     height: 100%;
     width: 250px;
 }
+
+.edit-name {
+    display: inline-flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.btn-add-card {
+    display: flex;
+    justify-content: center;
+}

@@ -1,3 +1,6 @@
-<div>
+<div class="task-row">
     <mat-checkbox (change)="checked($event)" [checked]="task.check">{{task.name}}</mat-checkbox>
+    <button mat-icon-button class="btn-delete" (click)="delete()">
+        <mat-icon>delete</mat-icon>
+    </button>
 </div>

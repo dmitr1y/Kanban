@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output } from '@angular/core';
 import { MatCheckboxChange } from '@angular/material';
 import { ITask } from 'src/app/components/boards/card-detail/task/interfaces';
 
@@ -19,5 +19,9 @@ export class TaskComponent implements OnInit {
 
   checked($event: MatCheckboxChange) {
     console.log('task checked', $event.checked);
+  }
+
+  delete() {
+
   }
 }

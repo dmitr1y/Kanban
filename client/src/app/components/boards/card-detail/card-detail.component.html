@@ -1,17 +1,26 @@
-<mat-card class="column-card" (click)="openCard()">
-    <mat-card-header>
-        <mat-card-title>{{card.name}}</mat-card-title>
-    </mat-card-header>
+<div class="header-with-button">
+    <app-back-button></app-back-button>
+    <h1>{{card?.name}}</h1>
+</div>
+
+<mat-card>
+    <mat-card-title>
+        Описание
+    </mat-card-title>
     <mat-card-content>
-        <p>
-            {{card.description}}
-        </p>
-        <div class="tasks-list">
-            <app-task
-                    *ngFor="let task of card.tasks"
-                    [task]="task"
-            >
-            </app-task>
-        </div>
+        {{card?.description}}
+    </mat-card-content>
+</mat-card>
+
+<mat-card>
+    <mat-card-title>
+        Задачи
+    </mat-card-title>
+    <mat-card-content class="tasks-list">
+        <app-task
+                *ngFor="let task of card?.tasks"
+                [task]="task"
+        >
+        </app-task>
     </mat-card-content>
 </mat-card>

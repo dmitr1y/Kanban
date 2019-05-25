@@ -1,10 +1,23 @@
 <mat-card class="board-column" *ngIf="column">
     <mat-card-header>
-        <mat-card-title>{{column.name}}</mat-card-title>
+        <mat-card-title *ngIf="!column.isEdit">{{column.name}}</mat-card-title>
+        <mat-card-title *ngIf="column.isEdit" class="edit-name">
+            <mat-form-field>
+                <input matInput placeholder="Название колонки" [(ngModel)]="column.name">
+            </mat-form-field>
+            <button mat-icon-button (click)="save()" matTooltip="Сохранить">
+                <mat-icon color="primary">done</mat-icon>
+            </button>
+        </mat-card-title>
     </mat-card-header>
     <mat-card-content class="column-cards">
+        <div class="btn-add-card">
+            <button mat-icon-button (click)="addCard()" matTooltip="Добавить карточку">
+                <mat-icon>add</mat-icon>
+            </button>
+        </div>
         <app-card
-                *ngFor="let card of column.cards"
+                *ngFor="let card of column?.cards"
                 [card]="card"
                 [dashboardId]="dashboardId"
                 [columnId]="column._id"

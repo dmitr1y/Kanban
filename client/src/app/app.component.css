@@ -40,3 +40,8 @@ app-loader {
 app-main-menu {
     margin-left: 2em;
 }
+
+.header-with-button {
+    display: inline-flex;
+    align-items: center;
+}
