@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { UserMenuComponent } from 'src/app/components/user/user-menu/user-menu.component';
-import { MatButtonModule, MatMenuModule } from '@angular/material';
+import { MatButtonModule, MatDividerModule, MatIconModule, MatMenuModule } from '@angular/material';
 import { UserService } from 'src/app/components/user/user.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { AuthService } from 'src/app/components/auth/auth.service';
@@ -16,6 +16,8 @@ import { AuthService } from 'src/app/components/auth/auth.service';
     MatButtonModule,
     MatMenuModule,
     BrowserModule,
+    MatDividerModule,
+    MatIconModule,
   ],
   providers: [
     UserService,

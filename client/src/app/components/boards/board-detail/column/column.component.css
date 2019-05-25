@@ -1,6 +1,5 @@
 .board-column {
     height: 100%;
-    width: 250px;
 }
 
 .edit-name {
@@ -12,4 +11,20 @@
 .btn-add-card {
     display: flex;
     justify-content: center;
+}
+
+.btn-drag-handler {
+    position: absolute;
+    z-index: 1;
+    width: 24px;
+    height: 24px;
+}
+
+.column {
+    min-width: 250px;
+    max-width: 350px;
+}
+
+mat-card-title {
+    text-align: center;
 }

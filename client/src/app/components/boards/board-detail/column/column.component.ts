@@ -48,4 +48,7 @@ export class ColumnComponent implements OnInit {
       this.column.cards.push(data);
     });
   }
+
+  onDrop(data: ICard, index: number) {
+  }
 }

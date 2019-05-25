@@ -20,6 +20,7 @@
         <app-task
                 *ngFor="let task of card?.tasks"
                 [task]="task"
+                (onDelete)="onDeleteTask($event)"
         >
         </app-task>
     </mat-card-content>

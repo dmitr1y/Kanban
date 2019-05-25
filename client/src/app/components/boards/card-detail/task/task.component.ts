@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { MatCheckboxChange } from '@angular/material';
 import { ITask } from 'src/app/components/boards/card-detail/task/interfaces';
 
@@ -11,6 +11,8 @@ export class TaskComponent implements OnInit {
 
   @Input() task: ITask;
 
+  @Output() onDelete: EventEmitter<ITask> = new EventEmitter<ITask>();
+
   constructor() {
   }
 
@@ -22,6 +24,6 @@ export class TaskComponent implements OnInit {
   }
 
   delete() {
-
+    this.onDelete.emit(this.task);
   }
 }

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ICard } from 'src/app/components/boards/board-detail/card/interfaces';
 import { ActivatedRoute } from '@angular/router';
 import { CardDetailService } from 'src/app/components/boards/card-detail/card-detail.service';
+import { ITask } from 'src/app/components/boards/card-detail/task/interfaces';
 
 @Component({
   selector: 'app-card-detail',
@@ -22,7 +23,8 @@ export class CardDetailComponent implements OnInit {
     this.cardId = this.router.snapshot.queryParamMap.get('id');
     let dashboardId = this.router.snapshot.queryParamMap.get('dashboardId');
     let columnId = this.router.snapshot.queryParamMap.get('columnId');
-    this.service.getCard(dashboardId, columnId, this.cardId).then(
+
+    this.service.get(dashboardId, columnId, this.cardId).then(
       card => {
         console.log('get card', card);
         this.card = card;
@@ -31,5 +33,16 @@ export class CardDetailComponent implements OnInit {
         console.log(err.message);
       },
     );
+  }
+
+  onDeleteTask(task: ITask) {
+    let foundTask = this.card.tasks.find(_task => _task._id == task._id);
+
+    if (foundTask) {
+      this.card.tasks.splice(
+        this.card.tasks.indexOf(foundTask),
+        1,
+      );
+    }
   }
 }

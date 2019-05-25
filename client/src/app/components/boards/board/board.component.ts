@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { IDashboard } from 'src/app/components/boards/interfaces';
 import { Router } from '@angular/router';
+import { MatDialog } from '@angular/material';
 
 @Component({
   selector: 'app-board',
@@ -12,6 +13,7 @@ export class BoardComponent implements OnInit {
 
   constructor(
     private router: Router,
+    public dialog: MatDialog,
   ) {
   }
 
@@ -25,5 +27,9 @@ export class BoardComponent implements OnInit {
         id: dashboard._id,
       },
     });
+  }
+
+  share() {
+
   }
 }

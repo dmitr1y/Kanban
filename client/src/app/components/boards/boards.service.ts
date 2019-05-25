@@ -13,7 +13,7 @@ export class BoardsService {
   ) {
   }
 
-  public getList(): PromiseLike<IDashboard[]> {
+  getList(): PromiseLike<IDashboard[]> {
     return this.httpClient.get<{ dashboards: IDashboard[] }>('/api/dashboard/list')
       .pipe(map(object => object.dashboards))
       .toPromise<IDashboard[]>();
@@ -25,5 +25,17 @@ export class BoardsService {
     return this.httpClient.get<{ dashboard: IDashboard }>('/api/dashboard/get', { params: params })
       .pipe(map(object => object.dashboard))
       .toPromise<IDashboard>();
+  }
+
+  update(board: IDashboard): PromiseLike<IDashboard> {
+    return this.httpClient.post<{ dashboard: IDashboard }>('/api/dashboard/update', { board })
+      .pipe(map(object => object.dashboard))
+      .toPromise<IDashboard>();
+  }
+
+  delete(boardId: string): PromiseLike<boolean> {
+    return this.httpClient.delete<{ success: boolean }>('/api/dashboard/update', { params: { boardId } })
+      .pipe(map(object => object.success))
+      .toPromise<boolean>();
   }
 }

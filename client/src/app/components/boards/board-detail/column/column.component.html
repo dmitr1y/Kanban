@@ -10,18 +10,23 @@
             </button>
         </mat-card-title>
     </mat-card-header>
-    <mat-card-content class="column-cards">
+    <mat-card-content class="column">
+        <mat-divider></mat-divider>
         <div class="btn-add-card">
             <button mat-icon-button (click)="addCard()" matTooltip="Добавить карточку">
                 <mat-icon>add</mat-icon>
             </button>
         </div>
-        <app-card
-                *ngFor="let card of column?.cards"
-                [card]="card"
-                [dashboardId]="dashboardId"
-                [columnId]="column._id"
-        >
-        </app-card>
+        <div class="column-cards" dnd-sortable-container [sortableData]="column?.cards">
+            <div
+                    dnd-sortable
+                    *ngFor="let card of column?.cards; let i = index"
+                    (onDropSuccess)="onDrop(card, i)"
+                    [sortableIndex]="i"
+            >
+                <mat-icon dnd-sortable-handle class="btn-drag-handler">drag_indicator</mat-icon>
+                <app-card [card]="card" [dashboardId]="dashboardId" [columnId]="column._id"></app-card>
+            </div>
+        </div>
     </mat-card-content>
 </mat-card>

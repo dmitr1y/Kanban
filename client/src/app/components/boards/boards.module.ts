@@ -8,7 +8,7 @@ import { BoardComponent } from './board/board.component';
 import {
   MatButtonModule,
   MatCardModule,
-  MatCheckboxModule, MatDialogModule,
+  MatCheckboxModule, MatDialogModule, MatDividerModule,
   MatFormFieldModule,
   MatGridListModule,
   MatIconModule, MatInputModule, MatTooltipModule,
@@ -21,6 +21,7 @@ import { TaskComponent } from 'src/app/components/boards/card-detail/task/task.c
 import { BackButtonModule } from 'src/app/shared/back-button/back-button.module';
 import { FormsModule } from '@angular/forms';
 import { CreateComponent } from './board-detail/card/create/create.component';
+import { DndModule } from 'ng2-dnd';
 
 @NgModule({
   imports: [
@@ -38,6 +39,8 @@ import { CreateComponent } from './board-detail/card/create/create.component';
     FormsModule,
     MatTooltipModule,
     MatDialogModule,
+    DndModule.forRoot(),
+    MatDividerModule,
   ],
   declarations: [
     BoardsComponent,

@@ -1,7 +1,18 @@
 .column-card :hover {
-    cursor: pointer;
+
 }
 
 .column-card {
     margin-bottom: 0.5em;
+    width: inherit;
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+.btn-go {
+    align-items: center;
+}
+
+.card {
+    width: 100%;
 }

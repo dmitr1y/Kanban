@@ -26,6 +26,7 @@ import { WINDOW_PROVIDES } from 'src/app/services/window/window.provider';
 import { BoardsModule } from 'src/app/components/boards/boards.module';
 import { MainMenuModule } from 'src/app/components/main-menu/main-menu.module';
 import { BackButtonModule } from 'src/app/shared/back-button/back-button.module';
+import { DndModule } from 'ng2-dnd';
 
 @NgModule({
   declarations: [
@@ -54,6 +55,7 @@ import { BackButtonModule } from 'src/app/shared/back-button/back-button.module'
     BoardsModule,
     MainMenuModule,
     BackButtonModule,
+    DndModule.forRoot(),
   ],
   providers: [
     AuthService,

@@ -3,7 +3,7 @@
 
 <mat-toolbar>
     <span class="logo">Kanban</span>
-    <app-main-menu></app-main-menu>
+    <app-main-menu *ngIf="isAuthorized()"></app-main-menu>
     <app-user-menu class="right-menu" *ngIf="isAuthorized()"></app-user-menu>
 </mat-toolbar>
 
