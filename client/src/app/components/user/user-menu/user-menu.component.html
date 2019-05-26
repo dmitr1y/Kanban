@@ -5,7 +5,7 @@
         {{user?.name}}
     </button>
     <mat-menu #menu="matMenu">
-        <button mat-menu-item>
+        <button mat-menu-item class="menu-item">
             <img *ngIf="user.image" src="{{user.image}}" class="avatar" alt="{{user.name}}">
             <mat-icon *ngIf="!user.image">account_circle</mat-icon>
             Профиль
