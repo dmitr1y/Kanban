@@ -1,9 +1,15 @@
 import { Injectable } from '@angular/core';
-import { IAuthToken, IUser } from 'src/app/components/auth/interfaces';
+import { IUser } from 'src/app/components/auth/interfaces';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { UserService } from 'src/app/components/user/user.service';
+
+interface LoginResponse {
+  jwt: string,
+  user: IUser,
+  message?: string,
+}
 
 @Injectable()
 export class AuthService {
@@ -23,20 +29,21 @@ export class AuthService {
     return localStorage.getItem(AuthService.JWT_TOKEN_KEY);
   }
 
-  public login(user: IUser): PromiseLike<boolean> {
-    return Promise.resolve<boolean>(this.httpClient.post<IAuthToken>('/api/auth/login', {
+  public login(user: IUser): PromiseLike<IUser> {
+    return new Promise<IUser>((resolve, reject) => {
+      this.httpClient.post<LoginResponse>('/api/auth/login', {
         email: user.email,
         password: user.password,
-      }).toPromise<IAuthToken>().then((token) => {
-        if (!token) {
-          return false;
+      }).toPromise<LoginResponse>().then((data: LoginResponse) => {
+        if (!data.jwt) {
+          reject(data.message);
         }
 
-        localStorage.setItem(AuthService.JWT_TOKEN_KEY, token.jwt);
+        localStorage.setItem(AuthService.JWT_TOKEN_KEY, data.jwt);
 
-        return true;
-      }),
-    );
+        resolve(data.user);
+      });
+    });
   }
 
   public register(user: IUser): PromiseLike<IUser> {

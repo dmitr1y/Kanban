@@ -1,6 +1,16 @@
 <div class="task-row">
-    <mat-checkbox (change)="checked($event)" [checked]="task.check">{{task.name}}</mat-checkbox>
-    <button mat-icon-button class="btn-delete" (click)="delete()">
-        <mat-icon>delete</mat-icon>
+    <mat-checkbox (change)="checked($event)" [checked]="task.check" *ngIf="!task.isEdit">
+        <span>{{task.name}}</span>
+    </mat-checkbox>
+    <mat-form-field *ngIf="task.isEdit">
+        <input matInput [(ngModel)]="task.name" placeholder="Название задачи">
+    </mat-form-field>
+    <button mat-icon-button class="btn" matTooltip="Сохранить" *ngIf="task.isEdit" (click)="save()">
+        <mat-icon color="primary">done</mat-icon>
+    </button>
+    <button mat-icon-button class="btn" (click)="delete()" matTooltip="Удалить">
+        <mat-icon color="warn">
+            {{ task.isEdit ? 'clear' : 'delete'}}
+        </mat-icon>
     </button>
 </div>

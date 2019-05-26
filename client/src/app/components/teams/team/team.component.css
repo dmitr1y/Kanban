@@ -1,0 +1,9 @@
+.card-image {
+    width: inherit;
+}
+
+mat-card {
+    width: 400px;
+    height: auto;
+    margin: 1.5em;
+}

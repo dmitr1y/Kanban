@@ -52,7 +52,7 @@ export class AuthComponent implements OnInit {
   private signin(): void {
     if (this.user && this.user.email && this.user.password) {
       this.authService.login(this.user).then(result => {
-          this.userService.getProfile(this.user.email).then((user) => {
+          this.userService.getProfile(result._id).then((user) => {
             this.userService.saveCurrentUser(user);
           });
           this.router.navigate(['dashboard']);

@@ -1,11 +1,13 @@
 <div>
     <button mat-button [matMenuTriggerFor]="menu">
-        <mat-icon>account_circle</mat-icon>
+        <img *ngIf="user.image" src="{{user.image}}" class="avatar" alt="{{user.name}}">
+        <mat-icon *ngIf="!user.image">account_circle</mat-icon>
         {{user?.name}}
     </button>
     <mat-menu #menu="matMenu">
         <button mat-menu-item>
-            <mat-icon>account_circle</mat-icon>
+            <img *ngIf="user.image" src="{{user.image}}" class="avatar" alt="{{user.name}}">
+            <mat-icon *ngIf="!user.image">account_circle</mat-icon>
             Профиль
         </button>
         <mat-divider></mat-divider>

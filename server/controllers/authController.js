@@ -18,9 +18,14 @@ exports.login = function(req, res) {
           expiresIn: 100000000, // expires in 100 min
         });
 
+        let resultUser = Object.assign({}, user);
+        delete resultUser.salt;
+        delete resultUser.hash;
+
         return res.status(201).send({
           message: 'User Logged In',
           jwt: token,
+          user: resultUser,
         });
       } else {
         return res.status(400).send({

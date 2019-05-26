@@ -1,7 +1,7 @@
 const User = require('../models/user');
 
 exports.getInfo = (req, res) => {
-    User.findOne({email: req.query.email}, (err, user) => {
+    User.findOne({_id: req.query.id}, (err, user) => {
         if (err || !user) {
             res.status(404).json({
                 message: "User not found."
@@ -11,6 +11,7 @@ exports.getInfo = (req, res) => {
                 user : {
                     name: user.name,
                     email: user.email,
+                    image: user.image,
                 },
             });
         }

@@ -45,4 +45,21 @@ export class CardDetailComponent implements OnInit {
       );
     }
   }
+
+  hasTasks(): boolean {
+    return this.card && this.card.tasks && this.card.tasks.length > 0;
+  }
+
+  createTask() {
+    if (!this.card.tasks) {
+      this.card.tasks = [];
+    }
+
+    this.card.tasks.push({
+      name: '',
+      check: false,
+      position: this.card.tasks.length,
+      isEdit: true,
+    });
+  }
 }

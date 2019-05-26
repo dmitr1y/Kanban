@@ -26,4 +26,8 @@ export class TaskComponent implements OnInit {
   delete() {
     this.onDelete.emit(this.task);
   }
+
+  save() {
+    this.task.isEdit = false;
+  }
 }

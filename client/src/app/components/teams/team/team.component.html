@@ -1,0 +1,26 @@
+<mat-card>
+    <mat-card-header>
+        <div mat-card-avatar class="example-header-image"></div>
+        <mat-card-title>{{team?.name}}</mat-card-title>
+    </mat-card-header>
+    <img *ngIf="team.image" class="card-image" mat-card-image src="{{team?.image}}" alt="Наша команда">
+    <mat-card-actions>
+        <button
+                mat-raised-button
+                color="primary"
+                matBadge="{{team?.users.length}}"
+                matBadgeColor="accent"
+                (click)="viewUsers()">
+            <mat-icon>people</mat-icon>
+            Учатсники
+        </button>
+        <button mat-button>
+            <mat-icon color="primary">dashboard</mat-icon>
+            Проекты
+        </button>
+        <button mat-button>
+            <mat-icon color="accent">thumb_up</mat-icon>
+            Вступить
+        </button>
+    </mat-card-actions>
+</mat-card>

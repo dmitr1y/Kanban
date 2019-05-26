@@ -13,3 +13,12 @@ mat-card {
     width: 80%;
     min-width: 300px;
 }
+
+.btn-add-task {
+    margin: 2em auto;
+    width: 12em;
+}
+
+.btn-add-task-list {
+
+}

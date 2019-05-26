@@ -3,30 +3,29 @@ var crypto = require('crypto');
 
 // creating user schema 
 const UserSchema = mongoose.Schema({
-    name : {
-        type : String,
-        required : true
-    },
-    email : {
-        type : String,
-        required : true
-    },
-    hash : String,
-    salt : String
+  name: {
+    type: String,
+    required: true,
+  },
+  email: {
+    type: String,
+    required: true,
+  },
+  hash: String,
+  salt: String,
+  image: String,
 });
 
-
 UserSchema.methods.setPassword = function(password) {
-    this.salt = crypto.randomBytes(16).toString('hex');
-    this.hash = crypto.pbkdf2Sync(password, this.salt,
-        1000, 64, `sha512`).toString(`hex`);
+  this.salt = crypto.randomBytes(16).toString('hex');
+  this.hash = crypto.pbkdf2Sync(password, this.salt,
+      1000, 64, `sha512`).toString(`hex`);
 };
 
-
 UserSchema.methods.validPassword = function(password) {
-    var hash = crypto.pbkdf2Sync(password,
-        this.salt, 1000, 64, `sha512`).toString(`hex`);
-    return this.hash === hash;
+  var hash = crypto.pbkdf2Sync(password,
+      this.salt, 1000, 64, `sha512`).toString(`hex`);
+  return this.hash === hash;
 };
 
 // exporting module to allow it to be imported in other files 

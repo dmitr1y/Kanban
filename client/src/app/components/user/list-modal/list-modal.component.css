@@ -1,0 +1,49 @@
+.user {
+    display: inline-flex;
+    justify-content: center;
+    flex-direction: row;
+}
+
+.user-list {
+    display: flex;
+    flex-direction: column;
+}
+
+.avatar {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.user-item {
+    align-items: center;
+    display: flex;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+}
+
+.username {
+    margin-left: 0.5em;
+}
+
+.btn-close {
+    margin-left: auto;
+}
+
+.header {
+    display: inline-flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+}
+
+.modal {
+    width: inherit;
+    height: inherit;
+}
+
+.title {
+    display: flex;
+    justify-content: flex-start;
+}

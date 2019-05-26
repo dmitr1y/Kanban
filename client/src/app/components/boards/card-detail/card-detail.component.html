@@ -12,11 +12,24 @@
     </mat-card-content>
 </mat-card>
 
-<mat-card>
+<div *ngIf="!hasTasks()" class="btn-add-task">
+    <button mat-button (click)="createTask()">
+        <mat-icon>add</mat-icon>
+        Добавить задачу
+    </button>
+</div>
+
+<mat-card *ngIf="hasTasks()">
     <mat-card-title>
         Задачи
     </mat-card-title>
     <mat-card-content class="tasks-list">
+        <div *ngIf="hasTasks()" class="btn-add-task-list">
+            <button mat-button (click)="createTask()">
+                <mat-icon>add</mat-icon>
+                Добавить задачу
+            </button>
+        </div>
         <app-task
                 *ngFor="let task of card?.tasks"
                 [task]="task"

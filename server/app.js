@@ -21,6 +21,7 @@ const user = require('./routes/user');
 const dashboard = require('./routes/dashboard');
 const column = require('./routes/column');
 const card = require('./routes/card');
+const team = require('./routes/team');
 
 app.use(express.json());
 app.use(express.urlencoded({extended: false}));
@@ -37,6 +38,7 @@ app.use('/user', user);
 app.use('/dashboard', dashboard);
 app.use('/column', column);
 app.use('/card', card);
+app.use('/team', team);
 
 app.use(function (req, res, next) {
     next(createError(404));

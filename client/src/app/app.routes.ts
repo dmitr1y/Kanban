@@ -4,6 +4,7 @@ import { Routes } from '@angular/router';
 import { PreventLoggedInAccessService } from 'src/app/services/prevent-logged-in-access/prevent-logged-in-access.service';
 import { BoardsRoutes } from 'src/app/components/boards/boards.routes';
 import { AuthGuardService } from 'src/app/services/auth-guard/auth-guard.service';
+import { TeamsRoutes } from 'src/app/components/teams/teams.routes';
 
 export const AppRoutes: Routes = [
   {
@@ -25,6 +26,7 @@ export const AppRoutes: Routes = [
         redirectTo: '/dashboard/list',
       },
       ...BoardsRoutes,
+      ...TeamsRoutes,
     ],
   },
 ];

@@ -5,13 +5,7 @@
     width: 250px;
 }
 
-.btn-delete {
+.btn {
     margin-left: auto;
     align-self: flex-end;
-    color: #353535;
-}
-
-.btn-delete :hover {
-    color: #f44336;
-    transition: color 0.2s ease-out;
 }

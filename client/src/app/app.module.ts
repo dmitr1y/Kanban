@@ -27,6 +27,7 @@ import { BoardsModule } from 'src/app/components/boards/boards.module';
 import { MainMenuModule } from 'src/app/components/main-menu/main-menu.module';
 import { BackButtonModule } from 'src/app/shared/back-button/back-button.module';
 import { DndModule } from 'ng2-dnd';
+import { TeamsModule } from 'src/app/components/teams/teams.module';
 
 @NgModule({
   declarations: [
@@ -35,8 +36,7 @@ import { DndModule } from 'ng2-dnd';
     NotEnoughRightsComponent,
     ToastComponent,
   ],
-  entryComponents: [
-  ],
+  entryComponents: [],
   imports: [
     BrowserModule,
     HttpClientModule,
@@ -56,6 +56,7 @@ import { DndModule } from 'ng2-dnd';
     MainMenuModule,
     BackButtonModule,
     DndModule.forRoot(),
+    TeamsModule,
   ],
   providers: [
     AuthService,
