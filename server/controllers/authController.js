@@ -18,9 +18,12 @@ exports.login = function(req, res) {
           expiresIn: 100000000, // expires in 100 min
         });
 
-        let resultUser = Object.assign({}, user);
-        delete resultUser.salt;
-        delete resultUser.hash;
+        let resultUser = {
+          _id: user._id,
+          name: user.name,
+          email: user.email,
+          image: user.image,
+        };
 
         return res.status(201).send({
           message: 'User Logged In',

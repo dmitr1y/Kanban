@@ -5,7 +5,7 @@ import { map } from 'rxjs/operators';
 import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class UserService {
 

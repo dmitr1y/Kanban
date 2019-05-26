@@ -54,13 +54,13 @@ export class AuthComponent implements OnInit {
       this.authService.login(this.user).then(result => {
           this.userService.getProfile(result._id).then((user) => {
             this.userService.saveCurrentUser(user);
+            this.router.navigate(['dashboard']);
           });
-          this.router.navigate(['dashboard']);
         },
         (err) => {
           this.bottomSheet.open(ToastComponent, {
             data: {
-              message: err.error.message,
+              message: err.message || err.error.message,
             },
           });
         },
